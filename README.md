@@ -15,13 +15,13 @@ O primeiro commit desta pasta é a build **sem nenhuma mudança**; o `git diff` 
 
 ## Rodar
 ```bash
-docker build -t phonecart-site sites/phonecart
+docker build -t phonecart-site .
 docker run -d -p 127.0.0.1:8088:80 -e FORMULARIO_WEBHOOK=https://<plataforma>/f/<codigo>/w/<segredo> phonecart-site
 ```
 Sem `FORMULARIO_WEBHOOK` (ou com valor que não começa com `http`) o container não sobe. Saúde em `/saude`.
 
 ## Pôr no ar (Easypanel)
-1. Novo serviço **App** no projeto, origem Git deste repositório, **Build path** `sites/phonecart`, Dockerfile.
+1. Novo serviço **App** no projeto, origem Git deste repositório (willianbrognoli/phonecart-site, branch main), **Build path** `/`, Dockerfile.
 2. Variável `FORMULARIO_WEBHOOK` = webhook mostrado no Painel → CRM → Formulários → "Troca de aparelho (site phonecart.com.br)".
    O webhook do formulário precisa estar **ligado**.
 3. Domínios `phonecart.com.br` e `www.phonecart.com.br` (HTTPS) apontando para a porta 80 do serviço.
